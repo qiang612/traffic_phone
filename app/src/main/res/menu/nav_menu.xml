@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="仪表盘" />
+        <item
+            android:id="@+id/nav_user_management"
+            android:icon="@drawable/ic_people"
+            android:title="用户管理" />
+        <item
+            android:id="@+id/nav_workflow"
+            android:icon="@drawable/ic_workflow"
+            android:title="工作流管理" />
+        <item
+            android:id="@+id/nav_violations"
+            android:icon="@drawable/ic_violations"
+            android:title="违法记录" />
+        <item
+            android:id="@+id/nav_monitoring"
+            android:icon="@drawable/ic_monitoring"
+            android:title="实时监控" />
+        <item
+            android:id="@+id/nav_accidents"
+            android:icon="@drawable/ic_accident"
+            android:title="事故处置" />
+        <item
+            android:id="@+id/nav_devices"
+            android:icon="@drawable/ic_devices"
+            android:title="设备管理" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="系统设置" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help"
+            android:title="帮助中心" />
+    </group>
+    <item android:title="账户">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="退出登录" />
+        </menu>
+    </item>
+</menu>
