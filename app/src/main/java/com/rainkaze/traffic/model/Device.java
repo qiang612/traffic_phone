@@ -7,12 +7,15 @@ public class Device {
     @SerializedName("deviceId")
     private Long id;
 
+    @SerializedName("deviceName")
     private String deviceName;
+    @SerializedName("deviceType")
     private String deviceType;
 
-    @SerializedName("address")
+    @SerializedName("location") // 假设后端返回 "location"
     private String location;
 
+    @SerializedName("status")
     private String status;
 
     // --- Getters and Setters ---

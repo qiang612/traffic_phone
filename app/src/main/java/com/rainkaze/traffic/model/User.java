@@ -5,15 +5,21 @@ import java.util.Date;
 
 public class User {
 
+    @SerializedName("userId")
     private Integer userId;
+    @SerializedName("username")
     private String username;
+    @SerializedName("fullName")
     private String fullName;
+    @SerializedName("email")
     private String email;
+    @SerializedName("policeId")
     private String policeId;
 
     @SerializedName("rank") // 后端JSON中是 "rank"，映射到App的 "role" 字段
     private String role;
 
+    @SerializedName("createdAt")
     private Date createdAt;
 
     // --- Getters and Setters ---

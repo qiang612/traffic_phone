@@ -14,14 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 import com.rainkaze.traffic.R;
 import com.rainkaze.traffic.adapter.DeviceAdapter;
 import com.rainkaze.traffic.api.ApiClient;
 import com.rainkaze.traffic.api.ApiService;
 import com.rainkaze.traffic.model.Device;
-import com.rainkaze.traffic.model.PageResult;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,21 +64,25 @@ public class DeviceManagementFragment extends Fragment {
         recyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
 
-        apiService.getDevices(0, 20).enqueue(new Callback<PageResult<Device>>() {
+        // =================================================================
+        //                 *** 这里是核心修改点 ***
+        //  我们将 Callback 的泛型从 PageResult<Device> 改为 List<Device>
+        //  以匹配 ApiService 中 getDevices() 方法的返回值 Call<List<Device>>
+        // =================================================================
+        apiService.getDevices(0, 20).enqueue(new Callback<List<Device>>() {
             @Override
-            public void onResponse(@NonNull Call<PageResult<Device>> call, @NonNull Response<PageResult<Device>> response) {
-                // *** 安全检查 ***
+            public void onResponse(@NonNull Call<List<Device>> call, @NonNull Response<List<Device>> response) {
                 if (!isAdded() || getContext() == null) {
                     return;
                 }
 
                 progressBar.setVisibility(View.GONE);
-                if (response.isSuccessful() && response.body() != null && response.body().getContent() != null) {
-                    if (response.body().getContent().isEmpty()) {
+                if (response.isSuccessful() && response.body() != null) {
+                    if (response.body().isEmpty()) {
                         emptyView.setVisibility(View.VISIBLE);
                     } else {
                         recyclerView.setVisibility(View.VISIBLE);
-                        deviceAdapter.setDevices(response.body().getContent());
+                        deviceAdapter.setDevices(response.body());
                     }
                 } else {
                     Toast.makeText(getContext(), "加载设备列表失败", Toast.LENGTH_SHORT).show();
@@ -86,8 +91,7 @@ public class DeviceManagementFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<PageResult<Device>> call, @NonNull Throwable t) {
-                // *** 安全检查 ***
+            public void onFailure(@NonNull Call<List<Device>> call, @NonNull Throwable t) {
                 if (!isAdded() || getContext() == null) {
                     return;
                 }

@@ -9,22 +9,21 @@ public class Violation {
     @SerializedName("id")
     private Long id;
 
-    @SerializedName("plate")
+    @SerializedName("plateNumber") // 假设后端返回 "plateNumber"
     private String plateNumber;
 
-    @SerializedName("type")
+    @SerializedName("violationType") // 假设后端返回 "violationType"
     private String violationType;
 
     @SerializedName("location")
     private String location;
 
-    @SerializedName("time")
+    @SerializedName("violationTime") // 假设后端返回 "violationTime"
     private Date violationTime;
 
     @SerializedName("status")
     private String status;
 
-    // 后端返回的可能是图片URL列表，所以我们用List<String>
     @SerializedName("evidenceImageUrls")
     private List<String> evidenceImageUrls;
 
@@ -49,7 +48,10 @@ public class Violation {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    // 返回图片列表中的第一个URL，或者在没有图片时返回null
+    public List<String> getEvidenceImageUrls() {
+        return evidenceImageUrls;
+    }
+
     public String getImageUrl() {
         if (evidenceImageUrls != null && !evidenceImageUrls.isEmpty()) {
             return evidenceImageUrls.get(0);

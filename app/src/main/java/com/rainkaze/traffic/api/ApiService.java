@@ -32,5 +32,6 @@ public interface ApiService {
     // @GET("/api/violations")
     // Call<PageResultDto<ViolationDetailDto>> getViolations(@QueryMap Map<String, String> options);
     @GET("/api/devices")
-    Call<PageResult<Device>> getDevices(@Query("page") int page, @Query("size") int size);
+    Call<List<Device>> getDevices(@Query("page") int page, @Query("size") int size);
+
 }
