@@ -13,7 +13,9 @@ public class User {
     private String fullName;
     @SerializedName("email")
     private String email;
-    @SerializedName("policeId")
+
+    // [FIXED] 将JSON中的 "policeNumber" 字段映射到 "policeId" 字段
+    @SerializedName("policeNumber")
     private String policeId;
 
     @SerializedName("rank") // 后端JSON中是 "rank"，映射到App的 "role" 字段

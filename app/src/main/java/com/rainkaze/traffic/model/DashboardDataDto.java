@@ -2,46 +2,28 @@ package com.rainkaze.traffic.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
-import java.util.Map;
 
 public class DashboardDataDto {
 
-    // 确保这里的字段名 (stats, violationTrends, etc.) 与后端JSON的key完全一致
-    // 使用 @SerializedName 可以确保即使变量名不同也能正确解析
     @SerializedName("stats")
     private Stats stats;
-
-    @SerializedName("violationTrends")
-    private List<ViolationTrend> violationTrends;
 
     @SerializedName("violationTypeDistribution")
     private ViolationTypeDistribution violationTypeDistribution;
 
-    @SerializedName("highFrequencyLocations")
-    private List<LocationCount> highFrequencyLocations;
+    // [MODIFIED] 修改字段以匹配后端
+    @SerializedName("realtimeWarnings")
+    private List<RealtimeWarning> realtimeWarnings;
+
+    @SerializedName("recentViolations")
+    private List<RecentViolation> recentViolations;
+
 
     // --- Getters ---
-    public Stats getStats() {
-        return stats;
-    }
-
-    public List<ViolationTrend> getViolationTrends() {
-        return violationTrends;
-    }
-
-    public ViolationTypeDistribution getViolationTypeDistribution() {
-        return violationTypeDistribution;
-    }
-    public static class ViolationTypeDistribution {
-        private List<String> labels;
-        private List<Integer> data;
-
-        public List<String> getLabels() { return labels; }
-        public List<Integer> getData() { return data; }
-    }
-    public List<LocationCount> getHighFrequencyLocations() {
-        return highFrequencyLocations;
-    }
+    public Stats getStats() { return stats; }
+    public ViolationTypeDistribution getViolationTypeDistribution() { return violationTypeDistribution; }
+    public List<RealtimeWarning> getRealtimeWarnings() { return realtimeWarnings; }
+    public List<RecentViolation> getRecentViolations() { return recentViolations; }
 
     // --- Inner Classes for nested JSON objects ---
 
@@ -53,7 +35,6 @@ public class DashboardDataDto {
         private long processedToday;
         private double processedChange;
 
-        // Getters for Stats
         public long getTotalToday() { return totalToday; }
         public double getTotalChange() { return totalChange; }
         public long getPendingToday() { return pendingToday; }
@@ -62,21 +43,40 @@ public class DashboardDataDto {
         public double getProcessedChange() { return processedChange; }
     }
 
-    public static class ViolationTrend {
-        private String date;
-        private int count;
-
-        // Getters for ViolationTrend
-        public String getDate() { return date; }
-        public int getCount() { return count; }
+    public static class ViolationTypeDistribution {
+        private List<String> labels;
+        private List<Integer> data;
+        public List<String> getLabels() { return labels; }
+        public List<Integer> getData() { return data; }
     }
 
-    public static class LocationCount {
+    // [NEW] 新增内部类以匹配 "realtimeWarnings"
+    public static class RealtimeWarning {
+        private String plateNumber;
+        private String violationType;
         private String location;
-        private int count;
+        private String timeAgo;
+        private int warningLevel;
 
-        // Getters for LocationCount
+        public String getPlateNumber() { return plateNumber; }
+        public String getViolationType() { return violationType; }
         public String getLocation() { return location; }
-        public int getCount() { return count; }
+        public String getTimeAgo() { return timeAgo; }
+        public int getWarningLevel() { return warningLevel; }
+    }
+
+    // [NEW] 新增内部类以匹配 "recentViolations"
+    public static class RecentViolation {
+        private String time;
+        private String plateNumber;
+        private String violationType;
+        private String location;
+        private String status;
+
+        public String getTime() { return time; }
+        public String getPlateNumber() { return plateNumber; }
+        public String getViolationType() { return violationType; }
+        public String getLocation() { return location; }
+        public String getStatus() { return status; }
     }
 }

@@ -30,7 +30,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         User user = userList.get(position);
         holder.fullName.setText(user.getFullName());
         holder.role.setText(user.getRole());
-        holder.policeId.setText("警号: " + user.getPoliceId());
+        holder.policeId.setText("警号: " + user.getUserId());
         holder.email.setText("邮箱: " + user.getEmail());
     }
 

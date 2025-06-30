@@ -32,13 +32,14 @@ import com.rainkaze.traffic.fragment.HelpFragment;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+    private Toolbar toolbar; // 将 toolbar 提升为成员变量
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar); // 初始化 toolbar
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -51,9 +52,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         if (savedInstanceState == null) {
+            // 设置初始界面和标题
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new DashboardFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_dashboard);
+            setTitle("仪表盘"); // 设置初始标题
         }
     }
 
@@ -64,21 +67,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_dashboard) {
             selectedFragment = new DashboardFragment();
+            setTitle(item.getTitle()); // 更新标题
         } else if (id == R.id.nav_user_management) {
             selectedFragment = new UserManagementFragment();
+            setTitle(item.getTitle()); // 更新标题
         } else if (id == R.id.nav_violations) {
             selectedFragment = new ViolationFragment();
+            setTitle(item.getTitle()); // 更新标题
         } else if (id == R.id.nav_devices) {
             selectedFragment = new DeviceManagementFragment();
+            setTitle(item.getTitle()); // 更新标题
         } else if (id == R.id.nav_help) {
             selectedFragment = new HelpFragment();
+            setTitle(item.getTitle()); // 更新标题
         } else if (id == R.id.nav_logout) { // 添加登出逻辑
             logout();
         }
         // ... 添加其他Fragment的切换逻辑 ...
-        // else if (id == R.id.nav_violations) {
-        //     selectedFragment = new ViolationsFragment();
-        // }
 
         if (selectedFragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -12,7 +12,8 @@ public class Device {
     @SerializedName("deviceType")
     private String deviceType;
 
-    @SerializedName("location") // 假设后端返回 "location"
+    // [FIXED] 确认后端返回的字段是 "address" 而不是 "location"
+    @SerializedName("address")
     private String location;
 
     @SerializedName("status")
