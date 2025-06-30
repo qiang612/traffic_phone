@@ -1,47 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/cardBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="姓名: "
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/textViewFullName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="张三"
-            android:textSize="16sp" />
-        <TextView
-            android:id="@+id/textViewRole"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="40dp"  android:layout_height="40dp" android:src="@drawable/ic_people"
+            app:tint="@color/colorPrimary"
+            android:background="@drawable/circle_background"
+            android:padding="8dp"/>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/textViewFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张三"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/textViewPoliceId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="警号: 12345"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/textColorSecondary"/>
+
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="邮箱: user@example.com"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/textColorSecondary"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="管理员"
-            android:textStyle="italic" />
+            android:background="@drawable/role_background"
+            android:textColor="@color/colorPrimary"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textStyle="bold"/>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textViewPoliceId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="警号: 12345"
-        android:layout_marginTop="4dp"/>
-
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="邮箱: user@example.com"
-        android:layout_marginTop="4dp"/>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

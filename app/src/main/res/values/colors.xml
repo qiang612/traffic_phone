@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecondary">#757575</color> <color name="textColorOnPrimary">#FFFFFF</color>
+    <color name="windowBackground">#F5F5F5</color> <color name="cardBackground">#FFFFFF</color>
+    <color name="dividerColor">#BDBDBD</color>
+    <color name="status_online">#4CAF50</color>
+    <color name="status_offline">#9E9E9E</color>
+    <color name="status_warning">#FF9800</color>
+    <color name="status_danger">#F44336</color>
 </resources>
