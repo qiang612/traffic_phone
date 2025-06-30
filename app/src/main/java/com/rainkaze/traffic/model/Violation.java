@@ -9,24 +9,30 @@ public class Violation {
     @SerializedName("id")
     private Long id;
 
-    @SerializedName("plateNumber") // 假设后端返回 "plateNumber"
+    @SerializedName("plate")
     private String plateNumber;
 
-    @SerializedName("violationType") // 假设后端返回 "violationType"
+    @SerializedName("type")
     private String violationType;
 
     @SerializedName("location")
     private String location;
 
-    @SerializedName("violationTime") // 假设后端返回 "violationTime"
+    @SerializedName("time")
     private Date violationTime;
 
     @SerializedName("status")
     private String status;
 
+    // 注意：根据你的日志，服务器并未返回这个字段，所以它会是null
     @SerializedName("evidenceImageUrls")
     private List<String> evidenceImageUrls;
 
+    @SerializedName("device")
+    private String device;
+
+    @SerializedName("district")
+    private String district;
 
     // --- Getters and Setters ---
 
@@ -47,6 +53,12 @@ public class Violation {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public String getDevice() { return device; }
+    public void setDevice(String device) { this.device = device; }
+
+    public String getDistrict() { return district; }
+    public void setDistrict(String district) { this.district = district; }
 
     public List<String> getEvidenceImageUrls() {
         return evidenceImageUrls;
