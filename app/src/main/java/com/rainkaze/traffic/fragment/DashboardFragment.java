@@ -24,6 +24,7 @@ import com.rainkaze.traffic.api.ApiService;
 import com.rainkaze.traffic.model.DashboardDataDto;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -99,15 +100,18 @@ public class DashboardFragment extends Fragment {
         });
     }
 
-    private void updateBarChart(Map<String, Integer> distribution) {
+    private void updateBarChart(DashboardDataDto.ViolationTypeDistribution distribution) {
+        if (distribution == null) return;
+
         ArrayList<BarEntry> entries = new ArrayList<>();
-        ArrayList<String> labels = new ArrayList<>();
-        int i = 0;
-        for (Map.Entry<String, Integer> entry : distribution.entrySet()) {
-            entries.add(new BarEntry(i, entry.getValue()));
-            labels.add(entry.getKey());
-            i++;
+        // 直接使用从JSON获取的data列表
+        List<Integer> data = distribution.getData();
+        for (int i = 0; i < data.size(); i++) {
+            entries.add(new BarEntry(i, data.get(i)));
         }
+
+        // 直接使用从JSON获取的labels列表
+        ArrayList<String> labels = new ArrayList<>(distribution.getLabels());
 
         if (entries.isEmpty()) {
             barChart.clear();

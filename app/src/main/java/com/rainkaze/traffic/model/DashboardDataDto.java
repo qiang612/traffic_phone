@@ -15,7 +15,7 @@ public class DashboardDataDto {
     private List<ViolationTrend> violationTrends;
 
     @SerializedName("violationTypeDistribution")
-    private Map<String, Integer> violationTypeDistribution;
+    private ViolationTypeDistribution violationTypeDistribution;
 
     @SerializedName("highFrequencyLocations")
     private List<LocationCount> highFrequencyLocations;
@@ -29,10 +29,16 @@ public class DashboardDataDto {
         return violationTrends;
     }
 
-    public Map<String, Integer> getViolationTypeDistribution() {
+    public ViolationTypeDistribution getViolationTypeDistribution() {
         return violationTypeDistribution;
     }
+    public static class ViolationTypeDistribution {
+        private List<String> labels;
+        private List<Integer> data;
 
+        public List<String> getLabels() { return labels; }
+        public List<Integer> getData() { return data; }
+    }
     public List<LocationCount> getHighFrequencyLocations() {
         return highFrequencyLocations;
     }
