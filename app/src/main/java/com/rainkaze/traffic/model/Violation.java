@@ -9,22 +9,25 @@ public class Violation {
     @SerializedName("id")
     private Long id;
 
+    // [FIXED] 从 "plateNumber" 改为 "plate"
     @SerializedName("plate")
     private String plateNumber;
 
+    // [FIXED] 从 "violationType" 改为 "type"
     @SerializedName("type")
     private String violationType;
 
     @SerializedName("location")
     private String location;
 
+    // [FIXED] 从 "violationTime" 改为 "time"
     @SerializedName("time")
     private Date violationTime;
 
     @SerializedName("status")
     private String status;
 
-    // 注意：根据你的日志，服务器并未返回这个字段，所以它会是null
+    // 注意：根据日志，服务器并未返回这个字段，所以它会是null
     @SerializedName("evidenceImageUrls")
     private List<String> evidenceImageUrls;
 
